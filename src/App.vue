@@ -13,8 +13,16 @@
 <script>
   import ParticipantsList from './components/ParticipantsList.vue';
   import ParticipantAddForm from './components/ParticipantAddForm.vue';
-
   export default {
+
+  mounted:function(){
+    this.$http.get('participants').then(response => {
+    this.participants = response.body;
+  });
+
+
+},
+
     components: {
       ParticipantsList,
       ParticipantAddForm
@@ -22,17 +30,25 @@
     data: function () {
       return {
         participants: [],
+	inna:[],
       }
+     
     },
+    
+    
     methods: {
       addParticipant: function(newParticipant){
         this.participants.push(newParticipant);
       },
       onRemove: function (participantToRemove){
-        this.participants = this.participants.filter((participant) => {
-          return participant.id !== participantToRemove.id;
-        });
+	this.$http.post('participants', {"id":participantToRemove.id, "name":null, "surname":null, "tryb":"usu"});
+
+
       }
+     
+
+      
+
     }
   };
 </script>
@@ -42,7 +58,6 @@
   margin: 0;
   padding: 0;
 }
-
 .app-content {
   margin: 30px;
 }
