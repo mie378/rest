@@ -1,1 +1,12 @@
-{}
+{
+    "name": "mie/meetings-rest",
+    "authors": [
+        {
+            "name": "mie378",
+            "email": "elmosiek@gmail.com"
+        }
+    ],
+    "require": {
+        "slim/slim": "^3"
+    }
+}
